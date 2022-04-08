@@ -14,7 +14,8 @@ export default function withAuth(ComponentToProtect) {
       };
     }
     componentDidMount() {
-      fetch('http://127.0.0.1:5000/checkToken', {
+      /*fetch('http://127.0.0.1:5000/checkToken', {*/
+      fetch('https://d2zqc0bdtc11lv.cloudfront.net/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

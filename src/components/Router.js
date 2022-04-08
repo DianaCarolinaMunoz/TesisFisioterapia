@@ -5,6 +5,7 @@ import "semantic-ui-css/semantic.min.css";
 import LoginForm from "./users/LoginForm";
 import NoRuta from "./pages/NoRuta";
 import HomeAdmin from "./pages/HomeAdmin";
+import HomePaciente from "./pages/HomePaciente";
 import Users from "./users/Users";
 import Agregar from "./users/Agregar";
 import Ver from "./users/Ver";
@@ -18,6 +19,8 @@ import Novedades from "./novedades/Novedades";
 import VerNovedad from "./novedades/Ver";
 import GestionRecomendaciones from "./recomendaciones/GestionRecomendaciones";
 import Ejercicios from './ejercicios/Ejercicios';
+import AgregarEjercicio from "./ejercicios/Agregar";
+import VerResultados from "./ejercicios/VerResultados";
 import withAuth from './withAuth';
 import { isNull } from "util";
 
@@ -38,6 +41,10 @@ class Router extends Component {
                 component ={withAuth(HomeAdmin)}/>
             />
             <Route
+                exact path="/HomePaciente"
+                component ={withAuth(HomePaciente)}/>
+            />
+            <Route
                 exact path="/Users"
                 component ={withAuth(Users)}/>
             />
@@ -53,6 +60,14 @@ class Router extends Component {
                     ? parseInt(match.params.cc)
                     : 0;
                     return <Ver cc={cc} />;
+                  }} />
+            />
+            <Route
+                exact path="/AgregarEjercicio/:id"
+                render={ props => {
+                    const { match } = props;
+                    let id = match.params.id;
+                    return <AgregarEjercicio id={id} />;
                   }} />
             />
             <Route
@@ -107,6 +122,16 @@ class Router extends Component {
                     ? match.params.id_user
                     : 0;
                     return <Ejercicios id_user={id_user} />;
+                  }} />
+            />
+            <Route
+                exact path="/VerResultados/:id_user"
+                render={ props => {
+                    const { match } = props;
+                    let id_user = !isNull(match.params.id_user)
+                    ? match.params.id_user
+                    : 0;
+                    return <VerResultados id_user={id_user} />;
                   }} />
             />
             <Route

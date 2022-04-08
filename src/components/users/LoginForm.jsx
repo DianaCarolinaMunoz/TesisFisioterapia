@@ -19,7 +19,8 @@ class LoginForm extends Component{
   }
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('http://127.0.0.1:5000/authenticateUser', {
+    /*fetch('http://127.0.0.1:5000/authenticateUser', {*/
+    fetch('https://d2zqc0bdtc11lv.cloudfront.net/authenticateUser', {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
@@ -37,8 +38,14 @@ class LoginForm extends Component{
     })
     .then(resp => {
       localStorage.setItem('token', resp.token);
-      this.props.history.push('/HomeAdmin');
       console.log(resp);
+      sessionStorage.setItem('tipo_user', resp.user.type);
+      if(resp.user.type == "fisio"){
+        this.props.history.push('/HomeAdmin');
+      }
+      if(resp.user.type == "paciente"){
+        this.props.history.push('/HomePaciente');
+      }
     })
     .catch(err => {
       console.log(err);

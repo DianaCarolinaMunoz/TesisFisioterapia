@@ -5,6 +5,8 @@ export const ELIMINAR_USER = "ELIMINAR_USER";
 export const ACTUALIZAR_USER = "ACTUALIZAR_USER";
 export const AUTHENTICATE_USER = "AUTHENTICATE_USER";
 export const CHECKTOKEN_USER = "CHECKTOKEN_USER";
+export const GET_USER = "GET_USER";
+
 //Cultivos Actions
 export const MOSTRAR_CULTIVOS = "MOSTRAR_CULTIVOS";
 export const CREAR_CULTIVO = "CREAR_CULTIVO";

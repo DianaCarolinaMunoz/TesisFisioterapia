@@ -13,13 +13,14 @@ class Agregar extends Component {
         ciudad: "",
         edad: "",
         peso:  "",
+        sexo:"",
         altura: "",
         tel: "",
         email: "",
         direccion: "",
         cedula: "",
         password:"",
-        type:"paciente"
+        type:""
     };
     handleSave = (e) => {
         e.preventDefault();
@@ -27,6 +28,7 @@ class Agregar extends Component {
             nombre: this.state.nombre,
             ciudad: this.state.ciudad,
             edad: this.state.edad,
+            sexo:this.state.edad,
             peso:  this.state.peso,
             altura: this.state.altura,
             tel: this.state.tel,
@@ -35,9 +37,21 @@ class Agregar extends Component {
             cedula: this.state.cedula,
             password:this.state.password,
             type:this.state.type
-        });
+        }).then(resp => {
+           
+            console.log(resp);
+            if(sessionStorage.getItem('tipo_user') == "fisio"){
+                this.props.history.push("/Users");
+            }
+            if(sessionStorage.getItem('tipo_user') == "paciente"){
+              this.props.history.push('/');
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            alert('Error create user try again');
+          });
         
-        this.props.history.push("/Users");
     }
     changeInput = (event) => {
         this.setState({[event.target.name]:event.target.value});
@@ -50,7 +64,7 @@ class Agregar extends Component {
             <Grid.Column>
             <Segment raised>
                 <Label color='teal' ribbon>
-                Registro de Caficultor
+                Registro de Usuario
                 </Label>
                 <Form style={{ marginTop: '1em' }}>
                     <Form.Field>
@@ -67,6 +81,13 @@ class Agregar extends Component {
                         name="edad"
                         placeholder='Edad'
                         type='number'
+                        onChange={this.changeInput} />
+                    </Form.Field>
+                    <Form.Field>
+                    <label>Sexo</label>
+                    <input 
+                        name="sexo"
+                        placeholder='sexo'
                         onChange={this.changeInput} />
                     </Form.Field>
                     <Form.Field>
@@ -113,11 +134,12 @@ class Agregar extends Component {
                         onChange={this.changeInput} />
                     </Form.Field>
                     <Form.Field>
-                    <input 
-                        name="type"
-                        placeholder='type'
-                        type='hidden'
-                        onChange={this.changeInput} />
+                    <label>Tipo usuario</label>
+                    <select name="type" onChange={this.changeInput}>
+                        <option value="-">Select option</option>
+                        <option value="paciente">Paciente</option>
+                        <option value="fisio">Fisio</option>
+                    </select>
                     </Form.Field>
                     <Form.Field>
                     <label>Password</label>

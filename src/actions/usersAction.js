@@ -1,10 +1,12 @@
-import {CREAR_USER, ELIMINAR_USER, ACTUALIZAR_USER, MOSTRAR_USERS, AUTHENTICATE_USER,CHECKTOKEN_USER,} from "./types.js";
+import {CREAR_USER, ELIMINAR_USER, ACTUALIZAR_USER, MOSTRAR_USERS, AUTHENTICATE_USER,CHECKTOKEN_USER,GET_USER} from "./types.js";
 import axios from "axios";
 
 //json online
 const urlOnline = "https://my-json-server.typicode.com/carsua/productosTest/productos/";
 // json local json server
-const urlLocal = "http://127.0.0.1:5000/";
+/*const urlLocal = "http://127.0.0.1:5000/";*/
+const urlLocal = "https://d2zqc0bdtc11lv.cloudfront.net/";
+
 
 const urlApi = urlLocal;
 
@@ -78,5 +80,13 @@ export const checkToken = () => async dispatch  => {
     });
 };
 
+export const getUserbyId = (id_user) => async dispatch  => {
+    const respuesta = await axios.post(urlApi+"getUserbyId",id_user);
+    console.log(respuesta);
+    dispatch({
+        type: GET_USER,
+        payload: respuesta.data
+    });
+};
 
 
