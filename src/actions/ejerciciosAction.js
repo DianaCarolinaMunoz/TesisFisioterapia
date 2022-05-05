@@ -5,7 +5,8 @@ import axios from "axios";
 const urlOnline = "https://my-json-server.typicode.com/carsua/productosTest/productos/";
 // json local json server
 /*const urlLocal = "http://127.0.0.1:5000/";*/
-const urlLocal = "https://d2zqc0bdtc11lv.cloudfront.net/";
+const urlLocal = "https://d2yaaz8bde1qj3.cloudfront.net/";
+
 
 
 const urlApi = urlLocal;

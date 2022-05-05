@@ -9,7 +9,7 @@ class Recomendacion extends Component {
         <Table.Body>
         <Table.Row>
             <Table.Cell>10-09-2021</Table.Cell>
-            <Table.Cell>Abono compost NN</Table.Cell>
+            <Table.Cell>Comentarios</Table.Cell>
             <Table.Cell>
                 <Link to="/VerRecomendacion">
                 <Button primary floated='right'>

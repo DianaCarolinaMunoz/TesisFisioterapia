@@ -26,14 +26,14 @@ class PanelPaciente extends Component {
           <Link to="/GestionRecomendaciones">
           <Card.Content align="center">
           <Icon  color="blue" size="huge" name='hospital' />
-          <Card.Header style={{ margin: '1em 0em' }} >Mis prescipciones</Card.Header>
+          <Card.Header style={{ margin: '3em 0em' }} >Mis prescripciones</Card.Header>
           </Card.Content>
           </Link>
         </Card>
 
         <Card
           align='center'
-          style={{ padding: '5em 5em' }}
+          style={{ padding: '7em 7em' }}
           color="blue"
           name='estadistica'
           onClick={this.handleItemClick}

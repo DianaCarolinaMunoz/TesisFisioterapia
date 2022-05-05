@@ -25,7 +25,7 @@ class Ver extends Component {
                 <Label color='green' ribbon>
                 Paciente
                 </Label>
-                <span>Detalles del paciente</span>
+                <span>Datos del paciente</span>
                 <List>
                     <List.Item>
                     <List.Content>

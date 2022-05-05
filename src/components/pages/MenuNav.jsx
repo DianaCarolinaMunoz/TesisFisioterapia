@@ -18,7 +18,7 @@ class MenuNav extends Component {
 
         <Dropdown item simple text='Mi Cuenta'>
           <Dropdown.Menu>
-            <Dropdown.Item>Cambiar Passwprd</Dropdown.Item>
+            <Dropdown.Item>Cambiar Password</Dropdown.Item>
             <Dropdown.Item>Cerrar Sesion</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

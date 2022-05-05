@@ -56,7 +56,7 @@ class Ejercicios extends Component {
                 </Table.Footer> */}
                   <TableBody>
                   <TableRow>
-                   <TableCell>Nombre: Test Carlos </TableCell>
+                   <TableCell>Datos para Fisioterapia </TableCell>
                    <TableCell></TableCell>
                    </TableRow>
                   <TableRow>
