@@ -28,7 +28,7 @@ class Agregar extends Component {
             nombre: this.state.nombre,
             ciudad: this.state.ciudad,
             edad: this.state.edad,
-            sexo:this.state.edad,
+            sexo:this.state.sexo,
             peso:  this.state.peso,
             altura: this.state.altura,
             tel: this.state.tel,
@@ -63,7 +63,7 @@ class Agregar extends Component {
             <Grid style={{ marginTop: '7em' }} columns={1}>
             <Grid.Column>
             <Segment raised>
-                <Label color='blue' ribbon>
+                <Label color='teal' ribbon>
                 Registro de Usuario
                 </Label>
                 <Form style={{ marginTop: '1em' }}>
@@ -85,10 +85,11 @@ class Agregar extends Component {
                     </Form.Field>
                     <Form.Field>
                     <label>Sexo</label>
-                    <input 
-                        name="sexo"
-                        placeholder='sexo'
-                        onChange={this.changeInput} />
+                     <select name="sexo" onChange={this.changeInput}>
+                        <option value="-">Select option</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
                     </Form.Field>
                     <Form.Field>
                     <label>Peso</label>

@@ -7,61 +7,97 @@ import {getUserbyId} from '../../actions/usersAction';
 import Ejercicio from './Ejercicio';
 import {connect} from "react-redux";
 
+const capacidad_vital = 0
+const user =  [
+  {}
+];
+const initialState ={
+  user,
+  capacidad_vital
+}
 
 
 class Ejercicios extends Component {
-  
+ 
+  state = initialState;
   componentDidMount(){
     this.props.allEjerciciosByUser({id_user:this.props.id_user});
     console.log(this.state);
-    //this.props.users.filter(p=>p._id == this.props.id_user );  
-    //this.setState(users[0]);
-    //this.props.getUserbyId({id_user:this.props.id_user});
-    this.props.getUserbyId({id_user:this.props.id_user}).then((e)=>{
+  
+
+  fetch('https://d2yaaz8bde1qj3.cloudfront.net/getUserbyId', {
+      method: 'POST',
+      body: JSON.stringify({id_user:this.props.id_user}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    })
+    .then(resp => {
       
-      //this.setState(e)
-     console.log(this.state);
-  });; 
+      console.log(resp);
+      const user = resp;
+      const capacidad_vital = getCapacidadVital(resp);
+      const newState = {
+        user,
+        capacidad_vital
+      };
+      this.setState(newState);
+      console.log(this.state.user.nombre);
+    })
+    .catch(err => {
+          console.error(err);
+    });
+    
+    function getCapacidadVital(user){
+      if(user.sexo = "M")
+      return (27.63 - ((0.112 * user.edad)*(user.altura/100)));
+      if(user.sexo = "F")
+      return (21.78 - ((0.101 * user.edad)*(user.altura/100)));
+    }
+
   }
-  
-    
-    
-  
 
   
 
     render() {
       const {ejercicios} = this.props;
-      //const {user} =  this.props.getUserbyId({id_user:this.props.id_user});
-        return (
+     
+      return (
           <div>
           <MenuNav/> 
           
           <Grid style={{ marginTop: '7em' }} columns={1}>
             <Grid.Column>  
             <Segment raised>
-                <Table>
-                {/* <Table.Footer fullWidth>
-                  <Table.Row>
-                    <Table.HeaderCell />
-                    <Table.HeaderCell colSpan='3'>
-                    <Link to={`/AgregarEjercicio/${this.props.id_user}`}>
-                      <Button floated='right' icon labelPosition='left' primary  size='small'>
-                      <Icon name='add' />
-                      Agregar>
-                      </Button>
-                    </Link>
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Footer> */}
+                <Table>               
                   <TableBody>
                   <TableRow>
-                   <TableCell>Datos para Fisioterapia </TableCell>
-                   <TableCell></TableCell>
+                   <TableCell>Nombre del paciente </TableCell>
+                   <TableCell>{this.state.user.nombre}</TableCell>
+                   </TableRow>
+                   <TableRow>
+                   <TableCell>Altura:</TableCell>
+                   <TableCell>{this.state.user.altura}</TableCell>
+                   </TableRow>
+                   <TableRow>
+                   <TableCell>Edad:</TableCell>
+                   <TableCell>{this.state.user.edad}</TableCell>
+                   </TableRow>
+                   <TableRow>
+                   <TableCell>Sexo:</TableCell>
+                   <TableCell>{this.state.user.sexo}</TableCell>
                    </TableRow>
                   <TableRow>
                    <TableCell>Capacidad vital:</TableCell>
-                   <TableCell>23.0</TableCell>
+                   <TableCell>{this.state.capacidad_vital}</TableCell>
                    </TableRow>
                   </TableBody>
                 </Table>
@@ -107,8 +143,7 @@ class Ejercicios extends Component {
 }
 const mapStateToProp =(state)=>{
   return{
-    ejercicios: state.ejercicios.ejercicios,
-    users: state.users.users
+    ejercicios: state.ejercicios.ejercicios
   };
 }
 export default withRouter(connect(mapStateToProp,{allEjerciciosByUser,getUserbyId})(Ejercicios));

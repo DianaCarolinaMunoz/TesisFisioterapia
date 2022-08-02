@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid,Label,Segment,List,Icon, Button, Card, Image } from "semantic-ui-react";
+import {Grid,Label,Segment,List,Icon, Card, Image, Button} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import MenuNav from '../pages/MenuNav';
 import {connect} from "react-redux";
@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 class Ver extends Component {
     state ={};
     componentDidMount(){
-     const users = this.props.users.filter(p=>p.cedula === this.props.cc );    
+     const users = this.props.users.filter(p=>p.cedula == this.props.cc );    
      this.setState(users[0]);
      console.log(this.props.users);
      console.log(this.props.cc);
@@ -21,7 +21,6 @@ class Ver extends Component {
         <MenuNav/>
         <Segment>
         <Grid style={{ marginTop: '9em' }} columns={2} stackable>
-        
             <Grid.Column>
             <Segment>
                 <Label color='blue' ribbon>
@@ -59,6 +58,10 @@ class Ver extends Component {
                         <List.Description>{this.state.edad}</List.Description>
                     </List.Content>
                     <List.Content>
+                        <List.Header>Sexo</List.Header>
+                        <List.Description>{this.state.sexo}</List.Description>
+                    </List.Content>
+                    <List.Content>
                         <List.Header>Email</List.Header>
                         <List.Description>{this.state.email}</List.Description>
                     </List.Content>
@@ -73,22 +76,19 @@ class Ver extends Component {
                         <List.Description>{this.state.cedula}</List.Description>
                     </List.Content>
                     </List.Item>
-                    <List.Item style={{ marginTop: '2em' }}>    
+                    <List.Item style={{ marginTop: '1em' }}>    
                     <List.Content>
                         <List.Header></List.Header>
                         <List.Description>
-                            <Link to={`/VerEjercicios/${this.state._id}`}><Button primary  size='small' > Prescripciones</Button></Link>
+                            <Link to={`/VerEjercicios/${this.state._id}`}><Button primary  size='small' > Ejercicios</Button></Link>
                             <Link to={`/AgregarEjercicio/${this.state._id}`}><Button floated='left' icon labelPosition='left' primary  size='small'><Icon name='clipboard' />Agregar</Button></Link>
                             <Link to="/Users"><Button >Regresar</Button></Link>
                         </List.Description>
                     </List.Content>
                     </List.Item>
                 </List>
-                </Segment>
-
-        </Grid.Column>
-            
-            
+            </Segment>
+            </Grid.Column>
             <Grid.Column>
                 
             
@@ -116,11 +116,9 @@ class Ver extends Component {
                 
             </Grid.Column>
 
-            
-                 
-    </Grid>  
-    </Segment>
-        
+
+        </Grid> 
+        </Segment>   
         </div>
         );
     }
