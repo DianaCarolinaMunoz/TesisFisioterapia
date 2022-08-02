@@ -1,3 +1,9 @@
+
+## Web Application
+
+In this web application the physiotherapist can register users, assign a prescription per patient, update prescriptions and visualise the recorded respiratory flow results of a respiratory physiotherapy.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
