@@ -68,8 +68,8 @@ class LoginForm extends Component{
     return (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='teal' textAlign='center'>
-        <Image src={logo} /> Ingresar a la cuenta
+      <Header as='h1' color='blue' textAlign='center' size='huge'>
+        Fisioterapia Respiratoria
       </Header>
       <Form size='large'>
         <Segment stacked>
@@ -92,7 +92,7 @@ class LoginForm extends Component{
 
           <Button 
             disabled = {!this.validateForm()}
-            color='teal' 
+            color='blue' 
             fluid size='large'
             onClick={this.onSubmit}>
             Entrar

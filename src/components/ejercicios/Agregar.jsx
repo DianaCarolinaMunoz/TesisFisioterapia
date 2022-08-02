@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import MenuNav from '../pages/MenuNav';
 import { Form,Button,Segment,Label,Grid, Dropdown } from 'semantic-ui-react';
 import {crearEjercicio} from "../../actions/ejerciciosAction";
-import {Link} from "react-router-dom";
+import {Link,withRouter} from "react-router-dom";
 import { connect } from 'react-redux';
 
 
 class Agregar extends Component {
+
+    
     
     state ={
         nombreEjercicio: null,
@@ -18,10 +20,13 @@ class Agregar extends Component {
         apnea: null,
         fraccion: null,
         flujo: null,
+        last_update:null,
         id_user:this.props.id
     };
     
     handleSave = (e) => {
+        const current = new Date();
+        const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
         e.preventDefault();
         this.props.crearEjercicio({
            nombreEjercicio: this.state.nombreEjercicio,
@@ -33,15 +38,21 @@ class Agregar extends Component {
             apnea: this.state.apnea,
             fraccion: this.state.fraccion,
             flujo: this.state.flujo,
+            last_update:date,
             id_user:this.state.id_user
+        }).then(resp => {
+            console.log(resp);
+            this.props.history.push(`/VerEjercicios/${this.state.id_user}`);
         });
-        
-        this.props.history.push("/VerEjercicios");
     }
     changeInput = (event) => {
         this.setState({[event.target.name]:event.target.value});
     }
+    
     render() {
+        
+      
+
         const typeOptions = [
               {
                 key: 'nombreEjercicio',
@@ -81,8 +92,8 @@ class Agregar extends Component {
             <Grid style={{ marginTop: '7em' }} columns={1}>
             <Grid.Column>
             <Segment raised>
-                <Label color='teal' ribbon>
-                Registrar nuevo ejercicio
+                <Label color='blue' ribbon>
+                Registrar Nuevo Ejercicio
                 </Label>
                 <Form style={{ marginTop: '1em' }}>
                     <Form.Field>
@@ -101,7 +112,7 @@ class Agregar extends Component {
                     <input  name="duracion" placeholder='duracion' onChange={this.changeInput} />
                     </Form.Field>
                     <Form.Field>
-                    <label>Resiones</label>
+                    <label>Sesiones</label>
                     <input 
                         name="sesiones"
                         placeholder='sesiones'
@@ -139,7 +150,7 @@ class Agregar extends Component {
                         type='number'
                         onChange={this.changeInput} />
                     </Form.Field>
-                    <Form.Field>
+                    {/*<Form.Field>
                     <label>Fraccion</label>
                     <input 
                         name="fraccion"
@@ -153,9 +164,9 @@ class Agregar extends Component {
                         name="flujo"
                         placeholder='flujo'
                         onChange={this.changeInput} />
-                    </Form.Field>
+                    </Form.Field> */}
                     <Button onClick={this.handleSave} primary type='submit'>Agregar</Button>
-                    <Link to="/VerEjercicios"><Button type='submit'>Regresar</Button></Link>
+                    <Link to={`/VerUser/${this.props.id}`}><Button type='submit'>Regresar</Button></Link>
                 </Form>
             </Segment>
             </Grid.Column>
@@ -165,4 +176,4 @@ class Agregar extends Component {
     }
 }
 
-export default connect(null,{crearEjercicio})(Agregar);
+export default withRouter(connect(null,{crearEjercicio})(Agregar));

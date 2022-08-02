@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Table,Button,Icon,Grid,Segment,Label, Card, TableHeader, TableBody, TableCell, TableRow} from 'semantic-ui-react'
 import MenuNav from '../pages/MenuNav';
-import {Link} from "react-router-dom";
+import {Link,withRouter} from "react-router-dom";
 import{allEjerciciosByUser} from "../../actions/ejerciciosAction";
 import {getUserbyId} from '../../actions/usersAction';
 import Ejercicio from './Ejercicio';
@@ -76,7 +76,7 @@ class Ejercicios extends Component {
                   })}
                   </Card.Group>
           </Segment>
-          <Segment raised>
+          {/* <Segment raised>
                 <Label color='blue' ribbon>
                 Resultados de Presicripción                </Label>
             <Card.Group>
@@ -97,7 +97,7 @@ class Ejercicios extends Component {
                 </Card.Content>
                 </Card>
                   </Card.Group>
-          </Segment>
+          </Segment> */}
           </Grid.Column>
           </Grid>
           
@@ -111,4 +111,4 @@ const mapStateToProp =(state)=>{
     users: state.users.users
   };
 }
-export default connect(mapStateToProp,{allEjerciciosByUser,getUserbyId})(Ejercicios);
+export default withRouter(connect(mapStateToProp,{allEjerciciosByUser,getUserbyId})(Ejercicios));

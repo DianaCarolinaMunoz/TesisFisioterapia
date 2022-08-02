@@ -35,23 +35,23 @@ class Router extends Component {
             <Route
                 exact path="/"
                 component ={LoginForm}/>
-            />
+            
             <Route
                 exact path="/HomeAdmin"
                 component ={withAuth(HomeAdmin)}/>
-            />
+            
             <Route
                 exact path="/HomePaciente"
                 component ={withAuth(HomePaciente)}/>
-            />
+            
             <Route
                 exact path="/Users"
                 component ={withAuth(Users)}/>
-            />
+            
             <Route
                 exact path="/AgregarUser"
                 component ={Agregar}/>
-            />
+            
             <Route
                 exact path="/VerUser/:cc"
                 render={ props => {
@@ -61,7 +61,7 @@ class Router extends Component {
                     : 0;
                     return <Ver cc={cc} />;
                   }} />
-            />
+            
             <Route
                 exact path="/AgregarEjercicio/:id"
                 render={ props => {
@@ -69,7 +69,7 @@ class Router extends Component {
                     let id = match.params.id;
                     return <AgregarEjercicio id={id} />;
                   }} />
-            />
+            
             <Route
                 exact path="/VerCultivos/:id_user"
                 render={ props => {
@@ -79,7 +79,7 @@ class Router extends Component {
                     : 0;
                     return <Cultivos id_user={id_user} />;
                   }} />
-            />
+            
             <Route
                 exact path="/VerCultivo/:id_cultivo"
                 render={ props => {
@@ -89,31 +89,31 @@ class Router extends Component {
                     : 0;
                     return <VerCultivo id_cultivo={id_cultivo} />;
                   }} />
-            />
+            
             <Route
                 exact path="/VerRecomendaciones"
                 component ={Recomendaciones}/>
-            />
+            
             <Route
                 exact path="/VerRecomendacion"
                 component ={VerRecomendacion}/>
-            />
+            
             <Route
                 exact path="/AgregarRecomendacion"
                 component ={AgregarRecomendacion}/>
-            />
+            
             <Route
                 exact path="/VerNovedades"
                 component ={Novedades}/>
-            />
+            
             <Route
                 exact path="/VerNovedad"
                 component ={VerNovedad}/>
-            />
+            
             <Route
                 exact path="/GestionRecomendaciones"
                 component ={GestionRecomendaciones}/>
-            />
+            
             <Route
                 exact path="/VerEjercicios/:id_user"
                 render={ props => {
@@ -123,20 +123,26 @@ class Router extends Component {
                     : 0;
                     return <Ejercicios id_user={id_user} />;
                   }} />
-            />
+            
             <Route
-                exact path="/VerResultados/:id_user"
+                exact path="/VerResultados/:id_ejercicio/:id_user/:dato"
                 render={ props => {
                     const { match } = props;
+                    let id_ejercicio = !isNull(match.params.id_ejercicio)
+                    ? match.params.id_ejercicio
+                    : 0;
                     let id_user = !isNull(match.params.id_user)
                     ? match.params.id_user
                     : 0;
-                    return <VerResultados id_user={id_user} />;
+                    let dato = !isNull(match.params.dato)
+                    ? match.params.dato
+                    : null;
+                    return <VerResultados id_ejercicio={id_ejercicio} id_user={id_user} dato={dato} />;
                   }} />
-            />
+            
             <Route
                 component={NoRuta} />
-            />
+            
             
         </Switch>
         </BrowserRouter>

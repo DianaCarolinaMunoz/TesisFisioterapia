@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Icon, Card,Header } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 
 
 class PanelAdmin extends Component {   
@@ -59,4 +59,4 @@ class PanelAdmin extends Component {
     )
   }
 }
-export default PanelAdmin;
+export default withRouter(PanelAdmin);

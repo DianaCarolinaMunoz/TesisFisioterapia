@@ -1,16 +1,76 @@
 import React, { Component } from 'react';
-import {Item,Button,Icon, Image, Form, Input,Card} from 'semantic-ui-react'
+import {Item,Button,Icon,Dropdown, Image, Form, Input,Card} from 'semantic-ui-react'
 import {Link,withRouter} from "react-router-dom";
 import { connect } from 'react-redux';
 
 
+const stateOptions = [
+    {key: ""},
+    {text: ""},
+    {value: ""}
+];
+
+const enlace = "";
+
+const initialState = {
+    stateOptions,
+    enlace
+};
+    
+
 class Ejercicio extends Component {
+    state = initialState;
+    handleChange = (e, { value }) => {
+        const newState = {
+            stateOptions:this.state.stateOptions,
+            enlace:value
+            }; 
+        console.log(value);
+       this.setState(newState);
+       console.log(this.state);
+    }
 
     componentDidMount(){
         //this.props.deleteUser();
-    }
+        fetch('https://d2yaaz8bde1qj3.cloudfront.net/allResultsByEjercicio', {
+      method: 'POST',
+      body: JSON.stringify({id_ejercicio:this.props.ejercicio._id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
 
-    handleDelete = (e) => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    })
+    .then(resp => {
+      
+      console.log(resp);
+      let count = 0;
+      let arrayVol = new Array();
+      resp.forEach(element => {
+        arrayVol[count] = {"key":  count, 'text' :  element['last_update'], 'value' : count}  
+        count++;
+      });
+      const newState = {
+        stateOptions:arrayVol,
+        enlace:this.state.enlace
+        };
+      this.setState(newState);
+      console.log(this.state);
+
+    })
+    .catch(err => {
+          console.error(err);
+          //this.setState({ loading: false, redirect: true });
+    });
+    
+    const handleDelete = (e) => {
     /*    e.preventDefault();
        
         this.props.deleteUser({
@@ -20,8 +80,10 @@ class Ejercicio extends Component {
         });;
     */
     }
+    }
     render() {
         const {ejercicio} = this.props;
+        const { enlace } = this.state;
         return (
             <Card fluid color="blue" >
             <Card.Content >
@@ -133,12 +195,13 @@ class Ejercicio extends Component {
                 <Icon name='right chevron' />
                 </Button>
                 </Link>
-                <Link to={`/updateEjercicio/${ejercicio._id}`}>
+                <Link to={`/verResultados/${ejercicio._id}/${ejercicio.id_user}/${enlace}`}>
                 <Button secundary floated='right'>
-                    Ver Historial
+                    Ver Grafica
                 <Icon name='right chevron' />
                 </Button>
                 </Link>
+                <Dropdown direction='right' placeholder='Seleccione datos' selection options={this.state.stateOptions} onChange={this.handleChange}/>
                 </Card.Content>
             </Card.Content>
             </Card>

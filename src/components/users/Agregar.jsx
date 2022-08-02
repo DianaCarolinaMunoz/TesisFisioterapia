@@ -63,7 +63,7 @@ class Agregar extends Component {
             <Grid style={{ marginTop: '7em' }} columns={1}>
             <Grid.Column>
             <Segment raised>
-                <Label color='teal' ribbon>
+                <Label color='blue' ribbon>
                 Registro de Usuario
                 </Label>
                 <Form style={{ marginTop: '1em' }}>

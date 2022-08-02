@@ -3,7 +3,7 @@ import User from "./User"
 import {Table,Button,Icon,Grid,Segment,Label} from 'semantic-ui-react'
 import{mostrarUsers} from "../../actions/usersAction";
 import MenuNav from '../pages/MenuNav';
-import {Link} from "react-router-dom";
+import {Link,withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 
@@ -61,7 +61,7 @@ class Users extends Component {
 }
 const mapStateToProp =(state)=>{
   return{
-    users: state.users.users
+    users: state.users.users 
   };
 }
-export default connect(mapStateToProp,{mostrarUsers})(Users);
+export default connect(mapStateToProp,{mostrarUsers})(withRouter(Users));
