@@ -71,7 +71,7 @@ class Agregar extends Component {
               },
               {
                 key: 'nombreEjercicio',
-                text: 'Suspiros inspiratirios',
+                text: 'Suspiros inspiratorios',
                 value: 'suspirosInspiratorios',
               },
               {
@@ -157,14 +157,14 @@ class Agregar extends Component {
                         placeholder='fraccion'
                         type='number'
                         onChange={this.changeInput} />
-                    </Form.Field>
+                    </Form.Field> */
                     <Form.Field>
                     <label>Flujo</label>
                     <input 
                         name="flujo"
                         placeholder='flujo'
                         onChange={this.changeInput} />
-                    </Form.Field> */}
+                    </Form.Field> }
                     <Button onClick={this.handleSave} primary type='submit'>Agregar</Button>
                     <Link to={`/VerUser/${this.props.id}`}><Button type='submit'>Regresar</Button></Link>
                 </Form>

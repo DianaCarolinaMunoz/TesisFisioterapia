@@ -105,6 +105,17 @@ class Ejercicio extends Component {
                         width={6}
                     />
                 }    
+                {ejercicio.nombreEjercicio== null ? '' :
+                    <Form.Field
+                        id='form-input-control-nombreEjercicio'
+                        control={Input}
+                        editable = {false}
+                        label='Nombre Ejercicio'
+                        placeholder='nombre'
+                        value={ejercicio.nombreEjercicio}
+                        width={6}
+                    />
+                }  
                 {ejercicio.apnea == null ? '' :
                     <Form.Field
                         id='form-input-control-apnea'
@@ -162,6 +173,16 @@ class Ejercicio extends Component {
                         label='series'
                         placeholder='series'
                         value={ejercicio.series}
+                        width={6}
+                    />
+                }
+                {ejercicio.flujo == null ? '' :
+                    <Form.Field
+                        id='form-input-control-flujo'
+                        control={Input}
+                        label='flujo'
+                        placeholder='flujo'
+                        value={ejercicio.flujo}
                         width={6}
                     />
                 }

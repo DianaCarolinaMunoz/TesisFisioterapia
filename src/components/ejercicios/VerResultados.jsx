@@ -89,7 +89,7 @@ class VerResultados extends Component {
        
     function getVol(arrayFlow) {
       let count  = 0;
-      let inspiracion = 1;
+      let inspiracion = 0;
       let arrayVol = new Array();
       arrayFlow.forEach(element => {
         if(count == 0){
@@ -100,7 +100,7 @@ class VerResultados extends Component {
           if( arrayVol[count-1].volume > 200 && element.volume < 200){
             inspiracion = 0;
           }else{
-            inspiracion = 1;
+            inspiracion = 0;
           }
           //console.log(inspiracion);
           arrayVol[count] = {"time":  element['time'], 'volume' :  element['volume'] + (arrayVol[count-1]['volume'] * inspiracion)}
@@ -140,7 +140,7 @@ class VerResultados extends Component {
                 
         <div className="line-chart-wrapper">
           <LineChart
-            width={600} height={400} data={data03}
+            width={800} height={400} data={data03}
             margin={{ top: 40, right: 40, bottom: 20, left: 10 }}
           >
             <CartesianGrid vertical={false} />
@@ -155,7 +155,7 @@ class VerResultados extends Component {
               labelStyle={{ fontWeight: 'bold', color: '#666666' }}
             />
             <Line dataKey="volume" stroke="#ff7300" dot={false} />
-            <Brush dataKey="time" startIndex={data03.length - 40}>
+            <Brush dataKey="time" startIndex={data03.length - 10}>
               <AreaChart>
                 <CartesianGrid />
                 <YAxis hide domain={['auto', 'auto']} />
@@ -172,7 +172,7 @@ class VerResultados extends Component {
         
 <div className="line-chart-wrapper">
   <LineChart
-    width={600} height={400} data={dataVolumen}
+    width={800} height={400} data={dataVolumen}
     margin={{ top: 40, right: 40, bottom: 20, left: 10 }}
   >
     <CartesianGrid vertical={false} />
@@ -187,7 +187,7 @@ class VerResultados extends Component {
       labelStyle={{ fontWeight: 'bold', color: '#666666' }}
     />
     <Line dataKey="volume" stroke="#ff7300" dot={false} />
-    <Brush dataKey="time" startIndex={dataVolumen.length - 40}>
+    <Brush dataKey="time" startIndex={dataVolumen.length - 10}> 
       <AreaChart>
         <CartesianGrid />
         <YAxis hide domain={['auto', 'auto']} />
